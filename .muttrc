@@ -1,0 +1,102 @@
+# Colors
+#source ~/.mutt/colors/mutt-colors-solarized-dark-16.muttrc
+#source ~/.mutt/colors/mutt-colors-solarized-dark-256.muttrc
+#source ~/.mutt/colors/mutt-colors-solarized-light-16.muttrc
+#source ~/.mutt/colors/mutt-colors-solarized-light-256.muttrc
+#source ~/.mutt/colors/vombatidae.mutt
+
+# Change the following line to a different editor you prefer.
+set editor='vim + -c "setlocal wrapmargin=0 textwidth=0 wrap nocp linebreak nohlsearch"'
+
+# Accounts
+source ~/.mutt/muttrc.mailboxes
+
+folder-hook ~/.mail/gmail/* source ~/.mutt/account.gmail
+folder-hook ~/.mail/uncannyworks/* source ~/.mutt/account.uncannyworks
+
+source ~/.mutt/account.gmail # default
+
+# Swap Accounts
+
+macro index,pager <f1> "<change-folder>~/.mail/gmail/INBOX<enter>" "Personal"
+macro index,pager <f2> "<change-folder>~/.mail/uncannyworks/INBOX<enter>" "Uncanny Works"
+
+# Various Config
+
+set auto_tag = yes
+set beep = no
+set beep_new = yes 
+set delete
+set include
+set ispell
+set mbox_type = Maildir
+set mail_check = 1
+unset move
+unset mark_old
+set quit
+set sleep_time = 0
+set sendmail='msmtp'
+set sort = 'threads'
+set sort_aux = 'reverse-date-received'
+set timeout = 3
+set reply_self = no
+set uncollapse_jump
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+
+hdr_order Date From To Cc
+alternative_order text/plain text/html *
+auto_view text/html
+
+set status_format = "───[ Size: %l ]───[ Folder: %f ]───[ %m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+bind editor <Tab> complete-query
+bind editor ^T complete
+
+folder-hook . "exec collapse-all"
+
+# Pager
+
+unset markers
+set menu_scroll
+set pager_index_lines = 10
+set pager_context = 3
+set pager_stop
+set tilde
+
+bind pager k previous-line
+bind pager j next-line
+bind pager gg top
+bind pager G bottom
+
+# Contacts / Queries
+set query_command = "mu cfind --format=mutt-ab '%s' 2> /dev/null"
+macro index "\Cs" "<enter-command>unset wait_key<enter><shell-escape>read -p'mu query: ' x; \
+      mu find --clearlinks --linksdir ~/.mu/mu-search --format links \$x<enter>\
+      <change-folder-readonly>~/.mu/mu-search\n" "mu find"
+macro index "<Esc>s" "<change-folder-readonly>~/.mu/mu-search\n" "display mu-find results"
+
+# Gmail-style keyboard shortcuts
+bind editor <space> noop 
+macro index,pager y "<save-message>+all<enter><enter>" "Archive"
+macro index,pager d "<save-message>+trash<enter><enter>" "Trash"
+macro index,pager gi "<change-folder>+INBOX<enter>" "Go to inbox"
+macro index,pager ga "<change-folder>+all<enter>" "Go to all mail"
+macro index,pager gs "<change-folder>+sent<enter>" "Go to sent mail"
+macro index,pager gd "<change-folder>+drafts<enter>" "Go to drafts"
+macro index,pager gt "<change-folder>+trash<enter>" "Go to trash"
+
+# Misc shortcuts
+bind index,pager rs reply 
+bind index,pager rg group-reply
+
+# GPG
+source ~/.mutt/gpg.rc
+
+send-hook "~f @gmail.com"  set pgp_sign_as=80DE4B3E
+send-hook "~f @uncannyworks.com"  set pgp_sign_as=80DE4B3E
+
+bind compose p  pgp-menu
+macro compose Y pfy "send mail without GPG"

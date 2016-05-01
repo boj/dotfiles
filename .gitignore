@@ -1,0 +1,17 @@
+*
+!README.md
+!.gitignore
+!.authinfo.gpg
+!.config/fish/config.fish
+!.local/bin/tmux-id.sh
+!.local/bin/mail-check.sh
+!.mbsyncrc
+!.msmtprc
+!.mail/.auth1.gpg
+!.mail/.auth2.gpg
+!.mutt/gpg.rc
+!.muttrc
+!.scrot.png
+!.spacemacs
+!.tmux.conf
+!.vimrc

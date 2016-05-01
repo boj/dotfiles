@@ -1,0 +1,91 @@
+########################################
+# Gmail
+########################################
+
+IMAPAccount gmail
+Host imap.gmail.com
+User mojobojo@gmail.com
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.mail/.auth1.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.mail/gmail
+Inbox ~/.mail/gmail/INBOX
+
+Channel gmail-INBOX
+Master :gmail-remote:INBOX
+Slave :gmail-local:INBOX
+Create Slave
+SyncState *
+Sync All
+
+Channel gmail-Drafts
+Master :gmail-remote:[Gmail]/Drafts
+Slave :gmail-local:/drafts
+Create Slave
+SyncState *
+Sync All
+
+Channel gmail-Sent
+Master ":gmail-remote:[Gmail]/Sent Mail"
+Slave :gmail-local:/sent
+Create Slave
+SyncState *
+Sync All
+
+Channel gmail-INBOX
+Master ":gmail-remote:[Gmail]/All Mail"
+Slave :gmail-local:/all
+Create Slave
+SyncState *
+Sync All
+
+########################################
+# Uncannyworks
+########################################
+
+IMAPAccount uncannyworks
+Host imap.gmail.com
+User brian.jones@uncannyworks.com
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.mail/.auth2.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+
+IMAPStore uncannyworks-remote
+Account uncannyworks
+
+MaildirStore uncannyworks-local
+Path ~/.mail/uncannyworks
+Inbox ~/.mail/uncannyworks/INBOX
+
+Channel uncannyworks-INBOX
+Master :uncannyworks-remote:INBOX
+Slave :uncannyworks-local:INBOX
+Create Slave
+SyncState *
+Sync All
+
+Channel uncannyworks-Drafts
+Master :uncannyworks-remote:[Gmail]/Drafts
+Slave :uncannyworks-local:/drafts
+Create Slave
+Sync All
+SyncState *
+
+Channel uncannyworks-Sent
+Master ":uncannyworks-remote:[Gmail]/Sent Mail"
+Slave :uncannyworks-local:/sent
+Create Slave
+Sync All
+SyncState *
+
+Channel uncannyworks-All
+Master ":uncannyworks-remote:[Gmail]/All Mail"
+Slave :uncannyworks-local:/all
+Create Slave
+SyncState *
+Sync All
