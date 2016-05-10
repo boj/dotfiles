@@ -40,6 +40,7 @@
      dockerfile
      git
      github
+     terraform
 
      ;; languages
      csharp
