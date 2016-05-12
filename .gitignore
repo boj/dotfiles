@@ -3,6 +3,7 @@
 !.gitignore
 !.authinfo.gpg
 !.config/fish/config.fish
+!.config/fish/functions/*
 !.gnupg/gpg.conf
 !.gnupg/gpg-agent.conf
 !.gnupg/sks-keyservers.netCA.pem
