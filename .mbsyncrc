@@ -5,7 +5,7 @@
 IMAPAccount gmail
 Host imap.gmail.com
 User mojobojo@gmail.com
-PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.mail/.auth1.gpg"
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mail/.gmail.gpg"
 AuthMechs LOGIN
 SSLType IMAPS
 
@@ -19,30 +19,26 @@ Inbox ~/.mail/gmail/INBOX
 Channel gmail-INBOX
 Master :gmail-remote:INBOX
 Slave :gmail-local:INBOX
-Create Slave
+Create Both
 SyncState *
-Sync All
 
 Channel gmail-Drafts
 Master :gmail-remote:[Gmail]/Drafts
 Slave :gmail-local:/drafts
-Create Slave
+Create Both
 SyncState *
-Sync All
 
 Channel gmail-Sent
 Master ":gmail-remote:[Gmail]/Sent Mail"
 Slave :gmail-local:/sent
-Create Slave
+Create Both
 SyncState *
-Sync All
 
 Channel gmail-INBOX
 Master ":gmail-remote:[Gmail]/All Mail"
 Slave :gmail-local:/all
-Create Slave
+Create Both
 SyncState *
-Sync All
 
 ########################################
 # Uncannyworks
@@ -51,7 +47,7 @@ Sync All
 IMAPAccount uncannyworks
 Host imap.gmail.com
 User brian.jones@uncannyworks.com
-PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.mail/.auth2.gpg"
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mail/.uncannyworks.gpg"
 AuthMechs LOGIN
 SSLType IMAPS
 
@@ -65,27 +61,23 @@ Inbox ~/.mail/uncannyworks/INBOX
 Channel uncannyworks-INBOX
 Master :uncannyworks-remote:INBOX
 Slave :uncannyworks-local:INBOX
-Create Slave
+Create Both
 SyncState *
-Sync All
 
 Channel uncannyworks-Drafts
 Master :uncannyworks-remote:[Gmail]/Drafts
 Slave :uncannyworks-local:/drafts
-Create Slave
-Sync All
+Create Both
 SyncState *
 
 Channel uncannyworks-Sent
 Master ":uncannyworks-remote:[Gmail]/Sent Mail"
 Slave :uncannyworks-local:/sent
-Create Slave
-Sync All
+Create Both
 SyncState *
 
 Channel uncannyworks-All
 Master ":uncannyworks-remote:[Gmail]/All Mail"
 Slave :uncannyworks-local:/all
-Create Slave
+Create Both
 SyncState *
-Sync All

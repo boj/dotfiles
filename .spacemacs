@@ -22,12 +22,15 @@
      emoji
      ibuffer
      osx
+     (shell :variables
+            shell-default-shell 'ansi-term
+            shell-default-term-shell "/usr/local/bin/fish")
      spell-checking
      syntax-checking
      themes-megapack
-     spacemacs-layouts
 
-     ;; org
+     ;; notes
+     deft
      org
 
      ;; markup
@@ -36,33 +39,30 @@
      yaml
 
      ;; mgmt tools
-     ansible
-     dockerfile
      git
      github
+
+     ;; config files
+     ansible
+     dockerfile
      terraform
 
      ;; languages
-     csharp
      emacs-lisp
      extra-langs
-     fsharp
-     go
      haskell
-     javascript
-     python
-     ruby
      rust
-     shell
      shell-scripts
 
-     ;; misc
-     mu4e
-     selectric
-     erc
+     ;; chat
+     (rcirc :variables rcirc-enable-authinfo-support t)
 
-     ;; private
-     ;;slack
+     ;; mail
+     mu4e
+
+     ;; misc
+     (elfeed :variables
+             rmh-elfeed-org-files (list "~/Dropbox/private/elfeed.org"))
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(smartparens)
@@ -98,12 +98,12 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(clues ample spacemacs-dark)
+   dotspacemacs-themes '(spacemacs-dark clues)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Hack"
                                :size 12
                                :weight normal
                                :width normal
@@ -141,7 +141,7 @@ before layers configuration."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup t
+   dotspacemacs-maximized-at-startup nil
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'.
@@ -190,6 +190,29 @@ before layers configuration."
   (setq org-todo-keywords
         '((sequence "TODO(t)" "ACTIVE(a)" "ONHOLD(h@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
   (setq org-fontify-done-headline t)
+
+  ;; full screen offset hack for native OSX
+  (setq ns-auto-hide-menu-bar t)
+  (set-frame-position nil 0 -24)
+  (tool-bar-mode 0)
+  (set-frame-size nil 271 85)
+
+  ;; clock
+  (setq display-time-day-and-date t)
+  (display-time)
+
+  ;; notes
+  (setq deft-extensions '("org"))
+  (setq deft-directory "~/Dropbox/Notes")
+
+  ;; irc
+  (setq rcirc-server-alist
+        '(("irc.freenode.net"
+           :port "6667"
+           :user "boj"
+           :nick "boj"
+           :channels ("#haskell" "#haskell-beginners"))))
+  (setq rcirc-omit-responses '("JOIN" "PART" "QUIT" "NICK" "AWAY"))
 
   ;; mu4e
   (setq mu4e-mu-binary "/usr/local/bin/mu"
@@ -257,12 +280,9 @@ before layers configuration."
   (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
 
   ;; gpg
+  (setq epg-gpg-program "gpg2")
   (add-hook 'mu4e-compose-mode-hook 'epa-mail-mode)
   (add-hook 'mu4e-view-mode-hook 'epa-mail-mode)
-
-  ;; mu4e-alert
-  ;;(setq mu4e-alert-set-default-style 'notifier)
-  ;;(setq mu4e-alert-interesting-mail-query "flag:unread m:'/uncannyworks/INBOX' OR flag:unread m:'/gmail/INBOX'")
 )
 
 ;; Custom variables
@@ -282,7 +302,6 @@ before layers configuration."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
- '(org-agenda-files (quote ("~/.org/everything.org")))
  '(ring-bell-function (quote ignore) t)
  '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
