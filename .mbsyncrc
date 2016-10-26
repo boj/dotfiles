@@ -20,24 +20,28 @@ Channel gmail-INBOX
 Master :gmail-remote:INBOX
 Slave :gmail-local:INBOX
 Create Both
+Expunge Both
 SyncState *
 
 Channel gmail-Drafts
 Master :gmail-remote:[Gmail]/Drafts
 Slave :gmail-local:/drafts
 Create Both
+Expunge Both
 SyncState *
 
 Channel gmail-Sent
 Master ":gmail-remote:[Gmail]/Sent Mail"
 Slave :gmail-local:/sent
 Create Both
+Expunge Both
 SyncState *
 
 Channel gmail-INBOX
 Master ":gmail-remote:[Gmail]/All Mail"
 Slave :gmail-local:/all
 Create Both
+Expunge Both
 SyncState *
 
 ########################################
@@ -62,22 +66,26 @@ Channel uncannyworks-INBOX
 Master :uncannyworks-remote:INBOX
 Slave :uncannyworks-local:INBOX
 Create Both
+Expunge Both
 SyncState *
 
 Channel uncannyworks-Drafts
 Master :uncannyworks-remote:[Gmail]/Drafts
 Slave :uncannyworks-local:/drafts
 Create Both
+Expunge Both
 SyncState *
 
 Channel uncannyworks-Sent
 Master ":uncannyworks-remote:[Gmail]/Sent Mail"
 Slave :uncannyworks-local:/sent
 Create Both
+Expunge Both
 SyncState *
 
 Channel uncannyworks-All
 Master ":uncannyworks-remote:[Gmail]/All Mail"
 Slave :uncannyworks-local:/all
 Create Both
+Expunge Both
 SyncState *

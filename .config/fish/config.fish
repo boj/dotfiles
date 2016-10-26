@@ -1,4 +1,4 @@
-set -x PATH /Users/bojo/.local/bin /usr/local/bin $PATH
+set -x PATH /Users/bojo/.local/bin /usr/local/bin /usr/local/share/google-cloud-sdk/bin $PATH
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
@@ -18,4 +18,24 @@ set fish_greeting
 if status --is-interactive
     archey -c
     cd
+end
+
+if type -q grc
+  set -l execs cat cvs df diff dig gcc g++ ls ifconfig \
+  make mount mtr netstat ping ps tail traceroute \
+  wdiff
+
+  if set -q grc_plugin_execs
+    set execs $grc_plugin_execs
+  end
+
+  for executable in $execs
+    if type -q $executable
+      function $executable --inherit-variable executable --wraps=$executable
+        grc.wrap $executable $argv
+      end
+    end
+  end
+else
+  echo 'You need to install grc!'
 end
