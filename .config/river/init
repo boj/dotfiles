@@ -1,0 +1,107 @@
+#!/bin/bash
+
+function spawn_once
+{
+	pgrep -f "${1}" > /dev/null || riverctl spawn "${*}"
+}
+
+# Interop
+spawn_once "dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
+spawn_once /lib/xdg-desktop-portal
+spawn_once /lib/xdg-desktop-portal-gtk
+spawn_once /lib/xdg-desktop-portal-wlr
+
+# Load Apps
+spawn_once dunst
+spawn_once pipewire
+spawn_once pipewire-pulse
+spawn_once "easyeffects --gapplication-service"
+spawn_once waybar
+spawn_once kanshi
+
+# Appearance
+pkill swaybg
+riverctl spawn "swaybg -o DP-1 -m fill -i `find ~/.wallpaper -type f | shuf -n 1`"
+riverctl spawn "swaybg -o DP-3 -m fill -i `find ~/.wallpaper -type f | shuf -n 1`"
+
+gsettings set org.gnome.desktop.interface cursor-theme 'BreezeX-Dark'
+seat seat0 xcursor_theme BreezeX-Dark 24
+
+riverctl border-width           1
+riverctl background-color       0xffffff
+riverctl border-color-unfocused 0x090618
+riverctl border-color-focused   0x7FB4CA
+
+riverctl hide-cursor timeout     5000
+riverctl hide-cursor when-typing enabled
+
+# Launch Keys
+riverctl map normal Super Return  spawn "wezterm"
+riverctl map normal Super D       spawn "wofi --show=run --lines=5"
+riverctl map normal Super+Shift D spawn "~/.config/river/scripts/crop-shot.sh"
+riverctl map normal Super+Shift F spawn "~/.config/river/scripts/full-shot.sh DP-3"
+riverctl map normal Super+Shift G spawn "~/.config/river/scripts/full-shot.sh DP-1"
+
+# Input
+riverctl set-repeat 50 200
+
+# Pointer
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super BTN_RIGHT resize-view
+
+riverctl focus-follows-cursor always
+riverctl set-cursor-warp on-output-change
+
+# WM Keys
+riverctl map normal Super       Z zoom
+riverctl map normal Super       Q close
+riverctl map normal Super+Shift E exit
+
+riverctl map normal Super H focus-view next
+riverctl map normal Super L focus-view previous
+
+riverctl map normal Super+Shift H swap next
+riverctl map normal Super+Shift L swap previous
+
+riverctl map normal Super+Control H focus-output next
+riverctl map normal Super+Control L focus-output previous
+
+riverctl map normal Super+Control+Shift H snap left
+riverctl map normal Super+Control+Shift J snap down
+riverctl map normal Super+Control+Shift K snap up
+riverctl map normal Super+Control+Shift l snap right
+
+riverctl map normal Super+Alt+Control H send-to-output next
+riverctl map normal Super+Alt+Control L send-to-output previous
+
+riverctl map normal Super+Alt+Shift H resize horizontal -50
+riverctl map normal Super+Alt+Shift J resize vertical 50
+riverctl map normal Super+Alt+Shift K resize vertical -50
+riverctl map normal Super+Alt+Shift L resize horizontal 50
+
+for i in $(seq 1 9)
+do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal Super               $i set-focused-tags    $tags
+    riverctl map normal Super+Shift         $i set-view-tags       $tags
+    riverctl map normal Super+Control       $i toggle-focused-tags $tags
+    riverctl map normal Super+Shift+Control $i toggle-view-tags    $tags
+done
+all_tags=$(((1 << 32) - 1))
+riverctl map normal Super       0   set-focused-tags    $all_tags
+riverctl map normal Super+Shift 0   set-view-tags       $all_tags
+riverctl map normal Super       Tab focus-previous-tags
+
+riverctl map normal Super Space toggle-float
+riverctl map normal Super F     toggle-fullscreen
+
+# Layout
+riverctl map normal Super Up    send-layout-cmd rivercarro "main-ratio +0.05"
+riverctl map normal Super Down  send-layout-cmd rivercarro "main-ratio -0.05"
+riverctl map normal Super Left  send-layout-cmd rivercarro "main-count +1"
+riverctl map normal Super Right send-layout-cmd rivercarro "main-count -1"
+riverctl map normal Super O     send-layout-cmd rivercarro "outer-gaps -1"
+riverctl map normal Super P     send-layout-cmd rivercarro "outer-gaps +1"
+
+riverctl default-layout rivercarro
+exec rivercarro

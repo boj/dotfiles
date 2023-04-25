@@ -1,0 +1,55 @@
+# plug
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "andreyorst/plug.kak" noload
+plug "andreyorst/fzf.kak" config %{
+    map global normal <c-p> ': fzf-mode<ret>'
+}
+plug "andreyorst/smarttab.kak" defer smarttab %{
+    set-option global softtabstop 4
+} config %{
+    hook global WinSetOption filetype=(rust|markdown|kak) expandtab
+    hook global WinSetOption filetype=(makefile) noexpandtab
+    hook global WinSetOption filetype=(c|cpp) smarttab
+}
+plug "andreyorst/powerline.kak" defer powerline %{
+    powerline-format global 'git bufname filetype mode_info line_column position'
+    powerline-toggle line_column off
+} defer powerline_bufname %{
+    set-option global powerline_shorten_bufname 'short'
+} defer powerline_default %{
+    powerline-theme default
+} config %{
+    powerline-start
+}
+plug "lePerdu/kakboard" %{
+    hook global WinCreate .* %{ kakboard-enable }
+}
+
+set global tabstop 4
+set global indentwidth 4
+
+# replace tab with spaces
+hook global InsertChar \t %{ exec -draft -itersel h@ }
+
+# https://github.com/kak-lsp/kak-lsp
+
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=rust %{
+    lsp-enable-window
+
+    hook window BufWritePre .* lsp-formatting-sync
+    hook window -group rust-inlay-hints BufWritePost .* rust-analyzer-inlay-hints
+    hook -once -always window WinSetOption filetype=.* %{
+        remove-hooks window rust-inlay-hints
+    }
+}
+
+map global normal <F1> %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
+map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
+map global object a '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+map global object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+map global object e '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
+map global object k '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
+map global object d '<a-semicolon>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
+map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
+
