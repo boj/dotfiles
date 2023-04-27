@@ -16,8 +16,11 @@ spawn_once dunst
 spawn_once pipewire
 spawn_once pipewire-pulse
 spawn_once "easyeffects --gapplication-service"
-spawn_once waybar
+#spawn_once waybar
+spawn_once "yambar --config=/home/bojo/.config/yambar/config-DP-3.yml"
+spawn_once "yambar --config=/home/bojo/.config/yambar/config-DP-1.yml"
 spawn_once kanshi
+spawn_once "swayidle -w timeout 900 'wlopm --off \"*\"' resume 'wlopm --on \"*\"'"
 
 # Appearance
 pkill swaybg
@@ -37,10 +40,10 @@ riverctl hide-cursor when-typing enabled
 
 # Launch Keys
 riverctl map normal Super Return  spawn "wezterm"
-riverctl map normal Super D       spawn "wofi --show=run --lines=5"
-riverctl map normal Super+Shift D spawn "~/.config/river/scripts/crop-shot.sh"
-riverctl map normal Super+Shift F spawn "~/.config/river/scripts/full-shot.sh DP-3"
-riverctl map normal Super+Shift G spawn "~/.config/river/scripts/full-shot.sh DP-1"
+riverctl map normal Super D       spawn "wofi --show=drun -I"
+riverctl map normal Super+Shift D spawn "~/.config/river/scripts/shot.sh crop"
+riverctl map normal Super+Shift F spawn "~/.config/river/scripts/shot.sh full DP-3"
+riverctl map normal Super+Shift G spawn "~/.config/river/scripts/shot.sh full DP-1"
 
 # Input
 riverctl set-repeat 50 200
@@ -54,7 +57,7 @@ riverctl set-cursor-warp on-output-change
 
 # WM Keys
 riverctl map normal Super       Z zoom
-riverctl map normal Super       Q close
+riverctl map normal Super+Shift Q close
 riverctl map normal Super+Shift E exit
 
 riverctl map normal Super H focus-view next
@@ -96,12 +99,14 @@ riverctl map normal Super Space toggle-float
 riverctl map normal Super F     toggle-fullscreen
 
 # Layout
-riverctl map normal Super Up    send-layout-cmd rivercarro "main-ratio +0.05"
-riverctl map normal Super Down  send-layout-cmd rivercarro "main-ratio -0.05"
-riverctl map normal Super Left  send-layout-cmd rivercarro "main-count +1"
-riverctl map normal Super Right send-layout-cmd rivercarro "main-count -1"
-riverctl map normal Super O     send-layout-cmd rivercarro "outer-gaps -1"
-riverctl map normal Super P     send-layout-cmd rivercarro "outer-gaps +1"
+riverctl map normal Super Up      send-layout-cmd rivercarro "main-ratio +0.05"
+riverctl map normal Super Down    send-layout-cmd rivercarro "main-ratio -0.05"
+riverctl map normal Super Left    send-layout-cmd rivercarro "main-count +1"
+riverctl map normal Super Right   send-layout-cmd rivercarro "main-count -1"
+riverctl map normal Super O       send-layout-cmd rivercarro "outer-gaps -1"
+riverctl map normal Super P       send-layout-cmd rivercarro "outer-gaps +1"
+riverctl map normal Super+Shift O send-layout-cmd rivercarro "inner-gaps -1"
+riverctl map normal Super+Shift P send-layout-cmd rivercarro "inner-gaps +1"
 
 riverctl default-layout rivercarro
 exec rivercarro
