@@ -15,6 +15,6 @@ if status is-interactive
 end
 
 if test -z $DISPLAY; and test (tty) = "/dev/tty1"
-    river
-    #sway
+    #river
+    sway
 end

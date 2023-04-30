@@ -9,42 +9,32 @@
     "spacing": 4,         // Gaps between modules (4px)
 
     // Choose the order of the modules
-    "modules-left": ["custom/weather", "pulseaudio", "river/tags"],
-    "modules-center": ["river/window"],
+    "modules-left": ["custom/weather", "pulseaudio", "sway/workspaces"],
+    "modules-center": ["sway/window"],
     "modules-right": [
         // "network",
-        "cpu",
-        "memory",
+        // "cpu",
+        // "memory",
         "clock"
     ],
 
-    "river/tags": {
-        "disable-click": false,
-        "num-tags": 9
-    },
-
-    "river/window": {
-        "format": "{}",
-        "max-length": 90
-    },
-
     // Modules configuration
-    //"sway/workspaces": {
-    //  "disable-scroll": false,
-    //  "disable-click": false,
-    //  "all-outputs": false,
-    //  "persistent_workspaces": {
-    //    "1": [],
-    //    "2": [],
-    //    "3": [],
-    //    //"4": [],
-    //    //"5": [],
-    //    "6": [],
-    //    //"7": [],
-    //    //"8": [],
-    //    //"9": [],
-    //    "10": [],
-    //  },
+    "sway/workspaces": {
+      "disable-scroll": false,
+      "disable-click": false,
+      "all-outputs": false,
+      //"persistent_workspaces": {
+      //  "1": [],
+      //  "2": [],
+      //  "3": [],
+      //  //"4": [],
+      //  //"5": [],
+      //  "6": [],
+      //  //"7": [],
+      //  //"8": [],
+      //  //"9": [],
+      //  "10": [],
+      //},
     //  "format": "<span font='16'>{icon}</span>",
     //  // https://fontawesome.com/icons
     //  "format-icons": {
@@ -59,7 +49,7 @@
     //    "9": "",
     //    "10": "",
     //  },
-    //},
+    },
 
     //"sway/mode": {
     //    "format": "<span style=\"italic\">{}</span>"
@@ -90,19 +80,11 @@
 
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "VOL: {volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
+        "format": "<span font='12'>{icon}</span> {volume}% {format_source}",
         "format-muted": " {format_source}",
-        "format-source": " MIC: {volume}% ",
-        "format-source-muted": " MIC: ",
+        "format-source": "<span font='12'></span> {volume}% ",
+        "format-source-muted": " <span font='12'></span>",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"

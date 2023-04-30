@@ -1,3 +1,3 @@
-# river wm setup
+# sway wm setup
 
-![Screenshot of river wm setup](/.config/river.png)
+![Screenshot of sway wm setup](/.config/sway.png)

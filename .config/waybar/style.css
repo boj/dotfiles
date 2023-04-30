@@ -52,7 +52,7 @@
 #waybar {
     background: #16161D;
     color: #DCD7BA;
-    font-family: Cantarell, Noto Sans, sans-serif;
+    font-family: Nerd Font;
     font-size: 12px;
 }
 
@@ -76,6 +76,8 @@
 #clock {
     color: #E6C384;
     font-weight: bold;
+    font-family: Jet Brains Mono;
+    font-size: 14px;
 }
 
 #cpu {
@@ -129,7 +131,7 @@
     font-weight: bold;
 }
 
-#tags button {
+#workspaces button {
     border-top: 1px solid transparent;
     /* To compensate for the top border and still have vertical centering */
     padding-bottom: 1px;
@@ -138,13 +140,13 @@
     color: #7E9CD8;
 }
 
-#tags button.focused {
+#workspaces button.focused {
     border-color: #A3D4D5;
     color: #E46876;
     background-color: #7FB4CA;
 }
 
-#tags button.urgent {
+#workspaces button.urgent {
     border-color: #6A9589;
     color: #DCD7BA;
 }

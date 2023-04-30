@@ -20,7 +20,7 @@ spawn_once "easyeffects --gapplication-service"
 spawn_once "yambar --config=/home/bojo/.config/yambar/config-DP-3.yml"
 spawn_once "yambar --config=/home/bojo/.config/yambar/config-DP-1.yml"
 spawn_once kanshi
-spawn_once "swayidle -w timeout 900 'wlopm --off \"*\"' resume 'wlopm --on \"*\"'"
+#spawn_once "swayidle timeout 900 'wlopm --off \"*\"' resume 'wlopm --on \"*\"'"
 
 # Appearance
 pkill swaybg
