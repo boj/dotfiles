@@ -27,7 +27,7 @@ set $right l
 # set $term kitty
 set $term ~/.local/bin/wezterm
 set $menu wofi --show=run --lines=5 --prompt=""
-set $wallpaper $HOME/.wallpaper
+set $wallpaper $HOME/.wallpaper/zaki-aby
 
 # Volume
 set $vol_up exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
