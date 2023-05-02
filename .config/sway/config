@@ -14,7 +14,6 @@ exec_always {
     gsettings set $gnome-schema cursor-theme 'BreezeX-Dark'
     #gsettings set $gnome-schema font-name 'Sans 10'
 }
-seat seat0 xcursor_theme BreezeX-Dark 24
 
 #######################################
 # Variables
@@ -59,6 +58,9 @@ workspace 6 output DP-1
 
 #######################################
 ### Input configuration
+seat seat0 xcursor_theme BreezeX-Dark 24
+seat * hide_cursor 5000
+seat * hide_cursor when-typing enable
 input "12951:6505:ZSA_Technology_Labs_Moonlander_Mark_I" {
     repeat_delay 200
     repeat_rate 50
