@@ -1,7 +1,21 @@
 # plug
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 plug "andreyorst/plug.kak" noload
-plug "andreyorst/fzf.kak" config %{
+plug "andreyorst/fzf.kak" defer fzf %{
+    set-option global fzf_terminal_command 'terminal wezterm kak -c %val{session} -e "%arg{@}"'
+} defer fzf-file %{
+    set-option global fzf_file_command 'rg'
+    set-option global fzf_highlight_command 'bat'
+} defer fzf-grep %{
+    set-option global fzf_grep_command 'rg'
+} config %{
+    require-module fzf
+    require-module fzf-buffer
+    require-module fzf-cd
+    require-module fzf-file
+    require-module fzf-grep
+    require-module fzf-search
+
     map global normal <c-p> ': fzf-mode<ret>'
 }
 plug "andreyorst/smarttab.kak" defer smarttab %{
@@ -12,12 +26,11 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
     hook global WinSetOption filetype=(c|cpp) smarttab
 }
 plug "andreyorst/powerline.kak" defer powerline %{
-    powerline-format global 'git bufname filetype mode_info line_column position'
-    powerline-toggle line_column off
+    powerline-format global 'mode_info git bufname filetype line_column position'
 } defer powerline_bufname %{
     set-option global powerline_shorten_bufname 'short'
-} defer powerline_default %{
-    powerline-theme default
+} defer powerline_tomorrow_night %{
+    powerline-theme tomorrow-night
 } config %{
     powerline-start
 }

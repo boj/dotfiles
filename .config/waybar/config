@@ -9,14 +9,24 @@
     "spacing": 4,         // Gaps between modules (4px)
 
     // Choose the order of the modules
-    "modules-left": ["custom/weather", "pulseaudio", "sway/workspaces"],
-    "modules-center": ["sway/window"],
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
     "modules-right": [
         // "network",
         // "cpu",
         // "memory",
-        "clock"
+        "pulseaudio",
+        "clock",
+        "custom/weather"
     ],
+
+    "hyprland/window": {
+        "separate-outputs": true
+    },
+
+    "hyprland/workspaces": {
+        "on-click": "activate"
+    },
 
     // Modules configuration
     "sway/workspaces": {
@@ -80,10 +90,10 @@
 
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "<span font='12'>{icon}</span> {volume}% {format_source}",
+        "format": "<span font='10'>{icon}</span>  {volume}% {format_source}",
         "format-muted": " {format_source}",
-        "format-source": "<span font='12'></span> {volume}% ",
-        "format-source-muted": " <span font='12'></span>",
+        "format-source": " <span font='10'></span> {volume}%",
+        "format-source-muted": " <span font='10'></span>",
         "format-icons": {
             "default": ["", "", ""]
         },

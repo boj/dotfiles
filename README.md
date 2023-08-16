@@ -1,3 +1,3 @@
-# sway wm setup
+# hyprland wm setup
 
-![Screenshot of sway wm setup](/.config/sway.png)
+![Screenshot of hyprland wm setup](/.config/hyprland.png)

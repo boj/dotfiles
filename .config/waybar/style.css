@@ -6,6 +6,8 @@
  *
  * =========================================================================== */
 
+@import "mocha.css";
+
 /* https://github.com/rebelot/kanagawa.nvim/blob/master/extras/wezterm.lua */
 
 /* -----------------------------------------------------------------------------
@@ -50,8 +52,8 @@
 
 /* The whole bar */
 #waybar {
-    background: #16161D;
-    color: #DCD7BA;
+    background: @base;
+    color: @peach;
     font-family: Nerd Font;
     font-size: 12px;
 }
@@ -74,7 +76,7 @@
  * -------------------------------------------------------------------------- */
 
 #clock {
-    color: #E6C384;
+    color: @blue;
     font-weight: bold;
     font-family: Jet Brains Mono;
     font-size: 14px;
@@ -117,7 +119,7 @@
 }
 
 #pulseaudio {
-    color: #7FB4CA;
+    color: @teal;
     font-size: 12px;
     margin-left: 10px;
     margin-right: 10px;
@@ -133,17 +135,19 @@
 
 #workspaces button {
     border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
     /* To compensate for the top border and still have vertical centering */
     padding-bottom: 1px;
     padding-left: 5px;
     padding-right: 5px;
-    color: #7E9CD8;
+    color: @lavender;
 }
 
-#workspaces button.focused {
-    border-color: #A3D4D5;
-    color: #E46876;
-    background-color: #7FB4CA;
+/* #workspaces button.focused { */
+#workspaces button.active {
+    border-color: @rosewater;
+    color: @maroon;
+    background-color: @overlay0;
 }
 
 #workspaces button.urgent {
@@ -152,5 +156,5 @@
 }
 
 #custom-weather {
-    color: #D27E99;
+    color: @red;
 }

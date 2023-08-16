@@ -3,7 +3,8 @@
 exec dunst
 exec pipewire
 exec pipewire-pulse
-exec exec easyeffects --gapplication-service
+exec wireplumber
+exec easyeffects --gapplication-service
 # exec yambar --config=/home/bojo/.config/yambar/config-DP-3.yml
 # exec yambar --config=/home/bojo/.config/yambar/config-DP-1.yml
 
@@ -25,8 +26,9 @@ set $right l
 
 # set $term kitty
 set $term ~/.local/bin/wezterm
-set $menu wofi --show=run --lines=5 --prompt=""
+set $menu wofi -f --show=run --lines=5 --prompt=""
 set $wallpaper $HOME/.wallpaper/zaki-aby
+#set $wallpaper $HOME/.wallpaper/orange-landscape
 
 # Volume
 set $vol_up exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
@@ -51,16 +53,16 @@ workspace 1 output DP-3
 workspace 6 output DP-1
 
 ### Idle configuration
-#exec swayidle -w \
+exec swayidle -w \
 #         timeout 300 'swaylock -f -c 000000' \
-#         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 #         before-sleep 'swaylock -f -c 000000'
 
 #######################################
 ### Input configuration
 seat seat0 xcursor_theme BreezeX-Dark 24
-seat * hide_cursor 5000
-seat * hide_cursor when-typing enable
+#seat * hide_cursor 5000
+#seat * hide_cursor when-typing enable
 input "12951:6505:ZSA_Technology_Labs_Moonlander_Mark_I" {
     repeat_delay 200
     repeat_rate 50
@@ -188,6 +190,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+#######################################
 # Design
 # class                 border  bground text    indicator child_border
 client.focused          #7FB4CA #1F1F28 #E82424 #C8C093   #7FB4CA
@@ -202,8 +205,10 @@ gaps inner 10
 smart_gaps on
 
 default_border pixel 1
-# default_floating_border none
 
+#######################################
+# Bar
 bar swaybar_command waybar
 
+#######################################
 include /etc/sway/config.d/*
