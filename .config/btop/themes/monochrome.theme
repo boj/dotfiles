@@ -1,0 +1,86 @@
+# Colors should be in 6 or 2 character hexadecimal or single spaced rgb decimal: "#RRGGBB", "#BW" or "0-255 0-255 0-255"
+# example for white: "#FFFFFF", "#ff" or "255 255 255".
+
+# All graphs and meters can be gradients
+# For single color graphs leave "mid" and "end" variable empty.
+# Use "start" and "end" variables for two color gradient
+# Use "start", "mid" and "end" for three color gradient
+
+# Main background, empty for terminal default, need to be empty if you want transparent background
+theme[main_bg]="#ff"
+
+# Main text color
+theme[main_fg]="#00"
+
+# Title color for boxes
+theme[title]="#44"
+
+# Higlight color for keyboard shortcuts
+theme[hi_fg]="#a0"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#dd" 
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#33"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#99"
+
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
+theme[proc_misc]="#33"
+
+# Cpu box outline color
+theme[cpu_box]="#22"
+
+# Memory/disks box outline color
+theme[mem_box]="#22"
+
+# Net up/down box outline color
+theme[net_box]="#22"
+
+# Processes box outline color
+theme[proc_box]="#22"
+
+# Box divider line and small boxes line color
+theme[div_line]="#88"
+
+# Temperature graph colors
+theme[temp_start]="#dd"
+theme[temp_mid]="#a6"
+theme[temp_end]="#67"
+
+# CPU graph colors
+theme[cpu_start]="#dd"
+theme[cpu_mid]="#a6"
+theme[cpu_end]="#67"
+
+# Mem/Disk free meter
+theme[free_start]="#dd"
+theme[free_mid]="#a6"
+theme[free_end]="#67"
+
+# Mem/Disk cached meter
+theme[cached_start]="#dd"
+theme[cached_mid]="#a6"
+theme[cached_end]="#67"
+
+# Mem/Disk available meter
+theme[available_start]="#dd"
+theme[available_mid]="#a6"
+theme[available_end]="#67"
+
+# Mem/Disk used meter
+theme[used_start]="#dd"
+theme[used_mid]="#a6"
+theme[used_end]="#67"
+
+# Download graph colors
+theme[download_start]="#dd"
+theme[download_mid]="#a6"
+theme[download_end]="#67"
+
+# Upload graph colors
+theme[upload_start]="#dd"
+theme[upload_mid]="#a6"
+theme[upload_end]="#67"

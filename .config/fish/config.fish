@@ -8,6 +8,11 @@ set -x QT_QPA_PLATFORM xcb # obs studio
 set -x NNN_PLUG 'h:hexview;v:imgview;m:-mediainf;c:chksum'
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden'
 
+test -d $HOME/.xdg || mkdir $HOME/.xdg
+set -x XDG_RUNTIME_DIR $HOME/.xdg
+test -d $HOME/.xdg/$USER || mkdir $HOME/.xdg/$USER 
+set -x XDG_USER_DIR $HOME/.xdg/$USER
+
 set -g theme_title_display_process yes
 set -g theme_title_display_path yes
 set -g theme_title_display_user yes
@@ -24,3 +29,19 @@ if test -z $DISPLAY; and test (tty) = "/dev/tty1"
     #sway
     Hyprland
 end
+
+function fish_prompt
+    set_color -o black
+    printf '\n%s@%s %s > ' $USER $hostname (prompt_pwd)
+end
+
+function ls
+    command ls $argv
+end
+
+for color in (set | grep -Eo '^fish_color_[a-zA-Z0-9_]+')
+    set $color normal
+end
+set fish_color_autosuggestion black
+set fish_color_error red
+set fish_pager_color_progress black

@@ -1,160 +1,76 @@
-/* =============================================================================
- *
- * Waybar configuration
- *
- * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
- *
- * =========================================================================== */
-
-@import "mocha.css";
-
-/* https://github.com/rebelot/kanagawa.nvim/blob/master/extras/wezterm.lua */
-
-/* -----------------------------------------------------------------------------
- * Keyframes
- * -------------------------------------------------------------------------- */
-
-@keyframes blink-warning {
-    70% {
-        color: white;
-    }
-
-    to {
-        color: white;
-        background-color: orange;
-    }
-}
-
-@keyframes blink-critical {
-    70% {
-      color: white;
-    }
-
-    to {
-        color: white;
-        background-color: red;
-    }
-}
-
-
-/* -----------------------------------------------------------------------------
- * Base styles
- * -------------------------------------------------------------------------- */
-
-/* Reset all styles */
 * {
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
-}
-
-/* The whole bar */
-#waybar {
-    background: @base;
-    color: @peach;
-    font-family: Nerd Font;
-    font-size: 12px;
-}
-
-/* Each module */
-#clock,
-#cpu,
-#custom-weather,
-#memory,
-#mode,
-#pulseaudio,
-#tray {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
-
-#clock {
-    color: @blue;
+    /* `otf-font-awesome` is required to be installed for icons */
+    /* undecided if I want Iosevka Slab Aile or pragmatapro */
+    font-family: Iosevka Slab;
     font-weight: bold;
-    font-family: Jet Brains Mono;
-    font-size: 14px;
-}
-
-#cpu {
-    color: #98BB6C;
-}
-
-#cpu.warning {
-    color: orange;
-}
-
-#cpu.critical {
-    color: red;
-}
-
-#memory {
-    color: #DCA561;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#memory.warning {
-    color: orange;
-}
-
-#memory.critical {
-    color: red;
-    animation-name: blink-critical;
-    animation-duration: 2s;
-}
-
-#mode {
-    background: #E6C384;
-    border-top: 2px solid white;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
-}
-
-#pulseaudio {
-    color: @teal;
     font-size: 12px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0;
 }
 
-#pulseaudio.muted {
-    /* No styles */
-}
 
 #window {
-    font-weight: bold;
+    padding-left: 16px;
+    background-color: #E6E5E4;
+    padding-right: 16px;
+}
+
+#waybar.stacked #window {
+    background-color: #FFF;
+    color: #FFF
+}
+
+#waybar.empty #window {
+    color: #FFF;
+    background-color: #fff;
+}
+
+#workspaces {
+    color: #Fff;
+    margin-left: 15px;
+    margin-top: 15px;
+    background-color: #323232;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#waybar {
+    background-color: transparent;
 }
 
 #workspaces button {
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 1px;
-    padding-left: 5px;
-    padding-right: 5px;
-    color: @lavender;
+  color: #Fff;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  min-height: 0;
+  border-radius: 0;
+  min-width: 20px;
+  border-radius: 2px;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 
-/* #workspaces button.focused { */
 #workspaces button.active {
-    border-color: @rosewater;
-    color: @maroon;
-    background-color: @overlay0;
+    color: #FFF;
+    border-width: 1.5px;
+    border-radius: 0;
+    border-color: #FFF;
 }
 
-#workspaces button.urgent {
-    border-color: #6A9589;
-    color: #DCD7BA;
+#custom-logout {
+    font-family: Iosevka Slab;
+    font-weight: normal;
+    margin-bottom: 10px;
+    margin-left: 15px;
 }
 
-#custom-weather {
-    color: @red;
+#clock {
+    margin-bottom: 20px;
+    margin-left: 15px;
+    font-family: Iosevka Slab;
+    font-weight: normal;
+    color: #242424;
 }
