@@ -1,18 +1,10 @@
 {
-    "layer": "bottom",
+    "layer": "top",
     "position": "left",
     "modules-left": ["hyprland/workspaces"],
     "modules-right": [
-        "custom/logout",
         "clock",
     ],
-
-    "custom/logout": {
-        "format": "",
-        "interval": "once",
-        "tooltip": "false",
-        "on-click": "wlogout",   
-    },
 
     "hyprland/workspaces": {
         "on-click": "activate",
