@@ -22,4 +22,6 @@ config.window_padding = {
   bottom = 20,
 }
 
+config.enable_wayland = false
+
 return config

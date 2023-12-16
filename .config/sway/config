@@ -1,10 +1,10 @@
 # exec mako
 # exec swaync
-exec dunst
-exec pipewire
-exec pipewire-pulse
-exec wireplumber
-exec easyeffects --gapplication-service
+# exec dunst
+# exec pipewire
+# exec pipewire-pulse
+# exec wireplumber
+# exec easyeffects --gapplication-service
 # exec yambar --config=/home/bojo/.config/yambar/config-DP-3.yml
 # exec yambar --config=/home/bojo/.config/yambar/config-DP-1.yml
 
@@ -24,10 +24,10 @@ set $down j
 set $up k
 set $right l
 
-# set $term kitty
-set $term ~/.local/bin/wezterm
+set $term alacritty
+#set $term ~/.local/bin/wezterm
 set $menu wofi -f --show=run --lines=5 --prompt=""
-set $wallpaper $HOME/.wallpaper/zaki-aby
+#set $wallpaper $HOME/.wallpaper/zaki-aby
 #set $wallpaper $HOME/.wallpaper/orange-landscape
 
 # Volume
@@ -43,19 +43,19 @@ set $ss3 exec IMG=$img && grim -o $(swaymsg -t get_outputs | jq -r '.[] | select
 
 #######################################
 ### Output configuration
-output DP-1 bg `find $wallpaper -type f | shuf -n 1` fill
-output DP-3 bg `find $wallpaper -type f | shuf -n 1` fill
+#output DP-1 bg `find $wallpaper -type f | shuf -n 1` fill
+#output DP-3 bg `find $wallpaper -type f | shuf -n 1` fill
 
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output DP-3 pos 0 0 mode 1920x1080@240Hz
-output DP-1 pos 1920 0 mode 1920x1080@240Hz
-workspace 1 output DP-3
-workspace 6 output DP-1
+output DP-1 pos 0 0 mode 1920x1080@240Hz
+output DP-3 pos 1920 0 mode 1920x1080@240Hz
+workspace 1 output DP-1
+workspace 6 output DP-3
 
 ### Idle configuration
-exec swayidle -w \
+#exec swayidle -w \
 #         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 #         before-sleep 'swaylock -f -c 000000'
 
 #######################################
